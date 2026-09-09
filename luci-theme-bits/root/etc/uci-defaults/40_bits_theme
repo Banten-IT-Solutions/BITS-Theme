@@ -1,0 +1,6 @@
+#!/bin/sh
+# Daftarkan tema BITS + jadikan default (bisa diubah di LuCI).
+uci -q set luci.themes.BITS='/luci-static/bits'
+uci -q set luci.main.mediaurlbase='/luci-static/bits'
+uci -q commit luci
+exit 0

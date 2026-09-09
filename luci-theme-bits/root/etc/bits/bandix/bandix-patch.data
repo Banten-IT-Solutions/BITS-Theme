@@ -1,0 +1,15 @@
+bandix/settings.js
+m=new form.Map('bandix')
+m=new form.Map('bandix',_('Settings'))
+bandix/settings.js
+s.description=_('Configure basic parameters for Bandix service');
+s.description='';
+bandix/settings.js
+s.description=_('Configure traffic monitoring related parameters');
+s.description='';
+bandix/settings.js
+s.description=_('Configure connection monitoring related parameters');
+s.description='';
+bandix/settings.js
+s.description=_('Configure DNS monitoring related parameters');
+s.description='';

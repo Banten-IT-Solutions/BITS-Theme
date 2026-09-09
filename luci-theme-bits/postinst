@@ -1,0 +1,23 @@
+#!/bin/sh
+# postinst luci-theme-bits
+
+[ -z "$IPKG_INSTROOT" ] && {
+	# Banner branded (cp — hindari clash kepemilikan base-files)
+	[ -f /usr/share/bits-theme/banner ] && cp -f /usr/share/bits-theme/banner /etc/banner 2>/dev/null
+
+	# Hook start_service.sh ke rc.local (idempoten)
+	if [ -f /etc/rc.local ] && ! grep -qF 'custom_service/start_service.sh' /etc/rc.local; then
+		echo 'bash /etc/custom_service/start_service.sh' >> /etc/rc.local
+		sed -i '/^exit 0/d' /etc/rc.local
+		echo 'exit 0' >> /etc/rc.local
+	fi
+
+	# Terapkan patch UI BITS
+	[ -x /etc/bits/apply-patches.sh ] && sh /etc/bits/apply-patches.sh
+
+	# Reload LuCI
+	rm -rf /tmp/luci-indexcache /tmp/luci-modulecache /tmp/.uci
+	/etc/init.d/rpcd restart >/dev/null 2>&1
+}
+
+exit 0

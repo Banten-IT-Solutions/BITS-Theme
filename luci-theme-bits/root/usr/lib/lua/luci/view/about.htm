@@ -1,0 +1,86 @@
+<%+header%>
+<style>
+	.about-wrap { max-width: 54rem; margin: 0 auto; }
+	.about-title {
+		font-family: var(--serif); font-weight: 700; font-size: 1.15rem; color: var(--ink);
+		border-bottom: 3px double var(--ink); padding-bottom: 0.5rem; margin: 1.5rem 0 0.75rem;
+	}
+	.about-panel {
+		background: var(--card); border: 1px solid var(--ink); border-radius: 14px;
+		box-shadow: 3px 3px 0 rgba(28,23,16,0.85); padding: 0.9rem 1.1rem;
+	}
+	html[data-theme="dark"] .about-panel { border-color: #4a3220; box-shadow: 3px 3px 0 rgba(249,115,22,0.25); }
+	.about-feature {
+		display: flex; align-items: center; gap: 0.65rem;
+		padding: 0.55rem 0.35rem; font-size: 0.92rem; color: var(--ink); line-height: 1.45;
+	}
+	.about-feature + .about-feature { border-top: 1px solid var(--line); }
+	.about-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+	.about-spec {
+		display: flex; align-items: center; gap: 0.85rem;
+		background: var(--card); padding: 1.1rem 1.1rem; border-radius: 12px;
+		border: 1px solid var(--ink); box-shadow: 2px 2px 0 rgba(28,23,16,0.85);
+	}
+	html[data-theme="dark"] .about-spec { border-color: #4a3220; box-shadow: 2px 2px 0 rgba(249,115,22,0.25); }
+	.about-spec-ico { font-size: 1.8rem; line-height: 1; flex: none; }
+	.about-spec-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.2rem; }
+	.about-spec-val { font-size: 0.95rem; color: var(--ink); }
+	@media (max-width: 600px) { .about-specs { grid-template-columns: 1fr; } .about-panel { padding: 0.7rem 0.85rem; } }
+</style>
+<h2 name="content"><%:About%></h2>
+
+<div class="cbi-map about-wrap" style="text-align: center; padding: 2rem 2rem 1.5rem;">
+	<h1 style="font-family: var(--serif); font-weight: 800; font-size: 2.2rem; letter-spacing: 0.08em; color: var(--ink); margin: 0 0 0.3rem; border: none;">BITS Networks</h1>
+	<p style="font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--muted); margin: 0 0 1.2rem;">Firmware router minimalis, stabil, dan siap pakai</p>
+	<p style="font-size: 0.95rem; line-height: 1.6; color: var(--ink); max-width: 44rem; margin: 0 auto;"><strong>BITS Networks</strong> adalah firmware router berbasis <strong>OpenWrt 24.10.6 (stable)</strong> yang dioptimalkan untuk perangkat STB Amlogic. Sistem disusun ulang secara minimalis: hanya layanan penting yang berjalan, sehingga boot lebih cepat, RAM lega, dan operasional harian lebih stabil.</p>
+</div>
+
+<div class="cbi-map about-wrap" style="padding: 0 2rem;">
+	<h3 class="about-title"><%:Features%></h3>
+	<div class="about-panel">
+		<ul style="list-style: none; padding: 0; margin: 0;">
+			<li class="about-feature">🔌 Mode modem fleksibel: Huawei HiLink (USB) &amp; USB tethering HP</li>
+			<li class="about-feature">🛡️ VPN Momo (sing-box) dengan mode TUN yang stabil</li>
+			<li class="about-feature">🌀 Akses jarak jauh yang aman via Tailscale</li>
+			<li class="about-feature">📊 Monitoring trafik per klien dengan Bandix</li>
+			<li class="about-feature">🤖 Kelola router dari Telegram via BITS Networks Bot</li>
+			<li class="about-feature">🔓 <a href="https://openwrt.org" target="_blank" style="color: var(--navy-2);">Berbasis OpenWrt resmi &amp; open-source</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="cbi-map about-wrap" style="padding: 0 2rem 2rem;">
+	<h3 class="about-title"><%:Specifications%></h3>
+	<div class="about-specs">
+		<div class="about-spec">
+			<span class="about-spec-ico">🏗️</span>
+			<div>
+				<span class="about-spec-label"><%:Base Firmware%></span>
+				<strong class="about-spec-val">OpenWrt 24.10.6 Stable</strong>
+			</div>
+		</div>
+		<div class="about-spec">
+			<span class="about-spec-ico">🐧</span>
+			<div>
+				<span class="about-spec-label"><%:Kernel%></span>
+				<strong class="about-spec-val">Linux 6.6.x</strong>
+			</div>
+		</div>
+		<div class="about-spec">
+			<span class="about-spec-ico">📺</span>
+			<div>
+				<span class="about-spec-label"><%:Target Device%></span>
+				<strong class="about-spec-val">STB Amlogic (B860H)</strong>
+			</div>
+		</div>
+		<div class="about-spec">
+			<span class="about-spec-ico">🔧</span>
+			<div>
+				<span class="about-spec-label"><%:Management%></span>
+				<strong class="about-spec-val">LuCI Web &amp; Telegram Bot</strong>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%+footer%>

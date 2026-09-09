@@ -1,0 +1,54 @@
+momo/log.js
+m=new form.Map('momo')
+m=new form.Map('momo',_('Log'))
+momo/log.js
+s=m.section(form.NamedSection,'log','log',_('Log'));s.tab(
+s=m.section(form.NamedSection,'log','log',_('Log'));s.hidetitle=true;s.tab(
+momo/editor.js
+m=new form.Map('momo')
+m=new form.Map('momo',_('Editor'))
+momo/editor.js
+s=m.section(form.NamedSection,'placeholder','placeholder',_('Editor'));o=s.option(form.ListValue
+s=m.section(form.NamedSection,'placeholder','placeholder',_('Editor'));s.hidetitle=true;o=s.option(form.ListValue
+momo/proxy.js
+m=new form.Map('momo')
+m=new form.Map('momo',_('Proxy Config'))
+momo/proxy.js
+s=m.section(form.NamedSection,'proxy','proxy',_('Proxy Config'));s.tab(
+s=m.section(form.NamedSection,'proxy','proxy',_('Proxy Config'));s.hidetitle=true;s.tab(
+momo/mixin.js
+m=new form.Map('momo')
+m=new form.Map('momo',_('Mixin Config'))
+momo/mixin.js
+s=m.section(form.NamedSection,'mixin','mixin',_('Mixin Option'));s.tab(
+s=m.section(form.NamedSection,'mixin','mixin',_('Mixin Option'));s.hidetitle=true;s.tab(
+momo/profile.js
+m=new form.Map('momo')
+m=new form.Map('momo',_('Profile'))
+momo/profile.js
+s=m.section(form.NamedSection,'config','config',_('Profile'));o=s.option(form.FileUpload
+s=m.section(form.NamedSection,'config','config',_('Profile'));s.hidetitle=true;o=s.option(form.FileUpload
+momo/app.js
+E('input',{id:'core_status',style:'border: unset; font-style: italic; font-weight: bold;',readonly:''})
+E('span',{id:'core_status',style:'font-style: italic; font-weight: bold;'})
+momo/app.js
+element.style.color=running?'green':'red';element.value=running?_('Running'):_('Not Running');
+element.style.color=running?'#3a7d44':'#b3261e';element.textContent=running?_('Running'):_('Not Running');
+momo/app.js
+m=new form.Map('momo',_('Momo'),`${_('Transparent Proxy with sing-box on OpenWrt.')} <a href="https://github.com/nikkinikki-org/OpenWrt-momo/wiki" target="_blank">${_('How To Use')}</a>`);
+m=new form.Map('momo',_('Momo'));
+momo/app.js
+o=s.option(form.Value,'_app_version',_('App Version'));o.readonly=true;
+o=s.option(form.DummyValue,'_app_version',_('App Version'));
+momo/app.js
+o=s.option(form.Value,'_core_version',_('Core Version'));o.readonly=true;
+o=s.option(form.DummyValue,'_core_version',_('Core Version'));
+momo/app.js
+o=s.option(form.Button,'reload');o.inputstyle='action';o.inputtitle=_('Reload Service');o.onclick=function(){return momo.reload();};o=s.option(form.Button,'restart');o.inputstyle='negative';o.inputtitle=_('Restart Service');o.onclick=function(){return momo.restart();};o=s.option(form.Button,'update_dashboard');o.inputstyle='positive';o.inputtitle=_('Update Dashboard');o.onclick=function(){return momo.updateDashboard();};o=s.option(form.Button,'open_dashboard');o.inputtitle=_('Open Dashboard');o.onclick=function(){return momo.openDashboard();};
+o=s.option(form.DummyValue,'_actions','');o.cfgvalue=function(){return E('span',{'class':'control-group'},[E('button',{'class':'cbi-button cbi-button-action','click':function(){return momo.reload();}},_('Reload Service')),E('button',{'class':'cbi-button cbi-button-negative','click':function(){return momo.restart();}},_('Restart Service')),E('button',{'class':'cbi-button cbi-button-positive','click':function(){return momo.updateDashboard();}},_('Update Dashboard')),E('button',{'class':'cbi-button cbi-button-button','click':function(){return momo.openDashboard();}},_('Open Dashboard'))]);};
+momo/app.js
+s=m.section(form.NamedSection,'config','config',_('App Config'));o=s.option(form.Flag
+s=m.section(form.NamedSection,'config','config',_('App Config'));s.hidetitle=true;o=s.option(form.Flag
+momo/app.js
+s=m.section(form.NamedSection,'procd','procd',_('procd Config'));s.tab(
+s=m.section(form.NamedSection,'procd','procd',_('procd Config'));s.hidetitle=true;s.tab(

@@ -1,0 +1,11 @@
+Package: luci-theme-bits
+Version: 1.0.0
+Depends: luci-base, rpcd, libc
+Section: luci
+Architecture: all
+Maintainer: Banten IT Solutions <support@bits.co.id>
+License: MIT
+Description: BITS theme for LuCI (OpenWrt)
+  Modern green theme for LuCI plus BITS branding: banner, SSH sysinfo,
+  boot service, and UI patches for momo, bandix, dockerman, diskman and
+  core LuCI pages.

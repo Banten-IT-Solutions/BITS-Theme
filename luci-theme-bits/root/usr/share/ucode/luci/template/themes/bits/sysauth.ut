@@ -1,0 +1,62 @@
+{#
+ BITS Networks modern login — glassmorphism 2026 style
+-#}
+
+{% include('header') %}
+
+<div class="bits-login-wrap">
+	<div class="bits-login-card">
+		<h1>BITS <em>Networks</em></h1>
+		<p class="bits-login-tag">Firmware router minimalis, stabil, dan siap pakai</p>
+		<form method="post" class="bits-login-form">
+			{% if (fuser): %}
+				<div class="alert-message warning bits-login-alert">
+					<p>{{ _('Invalid username and/or password! Please try again.') }}</p>
+				</div>
+			{% endif %}
+			<label class="bits-field">
+				<span>{{ _('Username') }}</span>
+				<input type="text" name="luci_username" value="{{ entityencode(duser, true) }}" autocomplete="username" placeholder="root" />
+			</label>
+			<label class="bits-field">
+				<span>{{ _('Password') }}</span>
+				<input type="password" name="luci_password" autocomplete="current-password" placeholder="••••••••" />
+			</label>
+			<button type="submit" class="bits-login-btn">{{ _('Log in') }}</button>
+		</form>
+		<div class="bits-login-foot">Crafted with <span class="bits-heart">❤️</span> by <strong>BITS Networks</strong></div>
+	</div>
+</div>
+
+{%
+	let https_ports = uci.get('uhttpd', 'main', 'listen_https') ?? [];
+
+	https_ports = uniq(filter(
+		map(
+			(type(https_ports) == 'string') ? split(https_port, /\s+/) : https_ports,
+			e => +match(e, /\d+$/)?.[0]
+		),
+		p => (p >= 0 && p <= 65535)
+	));
+%}
+
+<script>
+	var input = document.getElementsByName('luci_password')[0];
+
+	if (input)
+		input.focus();
+
+	if (document.location.protocol != 'https:') {
+		{{ https_ports }}.forEach(function(port) {
+			var url = 'https://' + window.location.hostname + ':' + port + window.location.pathname;
+			var img = new Image();
+
+			img.onload = function() { window.location = url };
+			img.src = 'https://' + window.location.hostname + ':' + port + '{{ resource }}/icons/loading.svg?' + Math.random();
+
+			setTimeout(function() { img.src = '' }, 5000);
+		});
+	}
+</script>
+
+{% include('footer') %}

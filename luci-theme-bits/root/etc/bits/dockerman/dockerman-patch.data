@@ -1,0 +1,36 @@
+dockerman/configuration.lua
+translate("Docker - Configuration"),
+translate("Docker - Configuration"))
+dockerman/configuration.lua
+translate("DockerMan is a simple docker manager client for LuCI"))
+
+dockerman/container.lua
+translatef("Docker - Container (%s)", container_info.Name:sub(2)),
+translatef("Docker - Container (%s)", container_info.Name:sub(2)))
+dockerman/container.lua
+translate("On this page, the selected container can be managed."))
+
+dockerman/containers.lua
+translate("Docker - Containers"),
+translate("Docker - Containers"))
+dockerman/containers.lua
+translate("This page displays all containers that have been created on the connected docker host."))
+
+dockerman/images.lua
+translate("Docker - Images"),
+translate("Docker - Images"))
+dockerman/images.lua
+translate("On this page all images are displayed that are available on the system and with which a container can be created."))
+
+dockerman/networks.lua
+translate("Docker - Networks"),
+translate("Docker - Networks"))
+dockerman/networks.lua
+translate("This page displays all docker networks that have been created on the connected docker host."))
+
+dockerman/overview.lua
+translate("Docker - Overview"),
+translate("Docker - Overview"))
+dockerman/overview.lua
+translate("An overview with the relevant data is displayed here with which the LuCI docker client is connected."))
+

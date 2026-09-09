@@ -1,0 +1,6 @@
+diskman/partition.lua
+m = SimpleForm("partition")
+m = SimpleForm(("partition"), dev)
+diskman/btrfs.lua
+m = SimpleForm("btrfs")
+m = SimpleForm(("btrfs"), uuid)

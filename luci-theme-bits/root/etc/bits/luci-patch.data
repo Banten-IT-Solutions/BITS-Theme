@@ -1,0 +1,60 @@
+network/interfaces.js
+m=new form.Map('network')
+m=new form.Map('network',_('Interfaces'))
+network/wireless.js
+m=new form.Map('wireless')
+m=new form.Map('wireless',_('Wireless'))
+network/dhcp.js
+,_('Dnsmasq is a lightweight <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server and <abbr title="Domain Name System">DNS</abbr> forwarder.')
+
+network/routes.js
+,_('Routing defines over which interface and gateway a certain host or network can be reached.')+'<br/>'+_('Routes go in routing tables and define the specific path to reach destinations.')+'<br/>'+_('Rules determine which routing table to use, based on conditions like source address or interface.')
+
+network/diagnostics.js
+E('h2',{},[_('Diagnostics')]),E('div',{'class':'cbi-map-descr'},_('Execution of various network commands to check the connection and name resolution to other systems.')),
+E('h2',{'name':'content'},_('Network Diagnostics')),
+system/reboot.js
+E('h2',_('Reboot')),E('p',{},_('Reboots the operating system of your device'))
+E('h2',{'name':'content'},_('Reboot'))
+system/system.js
+m=new form.Map('system',_('System'),_('Here you can configure the basic aspects of your device like its hostname or the timezone.'));
+m=new form.Map('system',_('System'));
+system/crontab.js
+E([E('h2',_('Scheduled Tasks')),
+E([E('h2',{'name':'content'},_('Scheduled Tasks')),
+system/startup.js
+E('h2',_('Startup'))
+E('h2',{'name':'content'},_('Startup'))
+system/startup.js
+[E('p',{},_('You can enable or disable installed init scripts here. Changes will be applied after a device reboot.<br /><strong>Warning: If you disable essential init scripts like "network", your device might become inaccessible!</strong>')),table]
+[E('p',{}),table]
+system/startup.js
+[E('p',{},_('This is the content of /etc/rc.local. Insert your own commands here (in front of \'exit 0\') to execute them at the end of the boot process.')),E('p',{},E('textarea'
+[E('p',{},E('textarea'
+system/sshkeys.js
+E('h2',_('SSH-Keys'))
+E('h2',{'name':'content'},_('SSH-Keys'))
+system/sshkeys.js
+E('div',{'class':'cbi-section-descr'},_('Public keys allow for passwordless SSH logins with higher security than plain passwords. In order to upload a new key to the device, paste an OpenSSH-compatible public key or drag a <code>.pub</code> file into the input field.')),
+E('div',{'class':'cbi-section-descr'},_('Add, manage or remove the SSH public keys allowed to log into this device.')),
+system/sshkeys.js
+'class':'cbi-button','click':ui.createHandlerFn(this,addKey)
+'class':'cbi-button cbi-button-add','click':ui.createHandlerFn(this,addKey)
+system/repokeys.js
+class: 'cbi-button',
+class: 'cbi-button cbi-button-add',
+package-manager.js
+E('h2',{},_('Software')),E('div',{'class':'cbi-map-descr'},[E('span',_('Install additional software and upgrade existing packages with %s.').format(L.hasSystemFeature('apk')?'apk':'opkg')),E('br'),E('span',_('<strong>Warning!</strong> Package operations can <a %s>break your system</a>.').format('href="https://openwrt.org/meta/infobox/upgrade_packages_warning" target="_blank" rel="noreferrer"'))]),
+E('h2',{'name':'content'},_('Software')),
+ttyd/term.js
+return E('iframe',{src:
+return E([E('h2',{'name':'content'},_('Terminal')),E('div',{'class':'cbi-map'},[E('iframe',{src:
+ttyd/term.js
+min-height: 500px; border: none; border-radius: 3px; resize: vertical;'});},handleSaveApply
+min-height: 500px; border: none; border-radius: 3px; resize: vertical;'})]);},handleSaveApply
+ttyd/config.js
+m=new form.Map('ttyd')
+m=new form.Map('ttyd',_('Config'))
+system/flash.js
+m=new form.JSONMap(mapdata,_('Flash operations'))
+m=new form.JSONMap(mapdata,_('Backup & Restore'))
