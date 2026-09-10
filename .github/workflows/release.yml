@@ -38,3 +38,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Trigger feed update
+        run: |
+          gh api repos/Banten-IT-Solutions/BITS-WRT-Packages/dispatches \
+            -f event_type=release-update \
+            -f client_payload[repo]=BITS-Theme
+        env:
+          GH_TOKEN: ${{ secrets.FEED_PAT }}
