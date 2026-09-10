@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.0.2...v1.0.3) (2026-09-10)
+
+
+### Bug Fixes
+
+* bundle menu renderer as menu-bits.js, drop runtime dep on luci-theme-material ([56cfa1d](https://github.com/Banten-IT-Solutions/BITS-Theme/commit/56cfa1d2e1e50ccc39717c3e06fa562934fe01fc))
+
 ## [1.0.2](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.0.1...v1.0.2) (2026-09-10)
 
 
