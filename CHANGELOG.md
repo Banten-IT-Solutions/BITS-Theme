@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.0.1...v1.0.2) (2026-09-10)
+
+
+### Bug Fixes
+
+* bump ci trigger test ([96e97f0](https://github.com/Banten-IT-Solutions/BITS-Theme/commit/96e97f0da951bf8b68b1818adf2a3a502cae6027))
+
 ## [1.0.1](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.0.0...v1.0.1) (2026-09-09)
 
 
