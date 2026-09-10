@@ -28,7 +28,7 @@
 <div id="cpuusage"></div>
 	<button type="button" class="bits-fab" onclick="bitsToggleTheme()" title="Ganti mode terang/gelap">☾</button>
 	<script src="{{ media }}/bits-icons.js?v=18"></script>
-	<script>L.require('menu-material')</script>
+	<script>L.require('menu-bits')</script>
 
 </body>
 </html>

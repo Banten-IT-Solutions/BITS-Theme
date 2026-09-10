@@ -1,4 +1,4 @@
-/* BITS sidebar icons: decorate menu-material links + brand + mobile toggle */
+/* BITS sidebar icons: decorate menu-bits links + brand + mobile toggle */
 (function(){
   function iconFor(text, href){
     var t = ' ' + String(text || '').toLowerCase() + ' ';
