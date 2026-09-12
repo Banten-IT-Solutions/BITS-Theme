@@ -1,0 +1,44 @@
+name: Release apk
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: ${{ matrix.branch }} apk
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        branch:
+          - openwrt-24.10
+          - openwrt-25.12
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Build apk
+        uses: openwrt/gh-action-sdk@main
+        env:
+          ARCH: aarch64_generic-${{ matrix.branch }}
+          FEEDNAME: bits
+          PACKAGES: luci-theme-bits
+          NO_REFRESH_CHECK: true
+
+      - name: Attach apk to release
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          for i in $(seq 1 30); do
+            gh release view "$tag" >/dev/null 2>&1 && break
+            sleep 5
+          done
+          find bin -name '*.apk' -exec gh release upload "$tag" {} --clobber \;
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
