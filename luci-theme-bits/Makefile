@@ -11,7 +11,7 @@ LUCI_DEPENDS:=+luci-base +rpcd
 
 PKG_LICENSE:=MIT
 PKG_MAINTAINER:=Banten IT Solutions <support@bits.co.id>
-PKG_VERSION:=1.0.4
+PKG_VERSION:=1.0.5
 PKG_RELEASE:=1
 
 include $(TOPDIR)/feeds/luci/luci.mk

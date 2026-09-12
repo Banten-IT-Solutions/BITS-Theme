@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.0.4...v1.0.5) (2026-09-12)
+
+
+### Bug Fixes
+
+* narrow apk attach glob ([9de3400](https://github.com/Banten-IT-Solutions/BITS-Theme/commit/9de34007a2323554d215b34f56023ef6fd379b7f))
+
 ## [1.0.4](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.0.3...v1.0.4) (2026-09-12)
 
 
