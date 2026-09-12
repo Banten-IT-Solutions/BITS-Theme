@@ -19,12 +19,12 @@ jobs:
       tag: ${{ steps.semantic.outputs.tag }}
     steps:
       - name: 🧾 Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: ⚙️ Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 20
 
@@ -72,7 +72,7 @@ jobs:
         branch: [ openwrt-24.10, openwrt-25.12 ]
     steps:
       - name: 🧾 Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.release.outputs.tag }}
 
