@@ -52,15 +52,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🔔 Trigger Feed
-        if: steps.semantic.outputs.released == 'true'
-        run: |
-          gh api repos/Banten-IT-Solutions/BITS-WRT-Packages/dispatches \
-            -f event_type=release-update \
-            -f client_payload[repo]=BITS-Theme
-        env:
-          GH_TOKEN: ${{ secrets.FEED_PAT }}
-
   apk:
     name: 🏗️ Build APK
     needs: release
@@ -89,3 +80,17 @@ jobs:
           find bin -name '*.apk' -exec gh release upload "${{ needs.release.outputs.tag }}" {} --clobber \;
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  feed:
+    name: 🔔 Trigger Feed
+    needs: apk
+    if: needs.release.outputs.released == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔔 Trigger Feed
+        run: |
+          gh api repos/Banten-IT-Solutions/BITS-WRT-Packages/dispatches \
+            -f event_type=release-update \
+            -f client_payload[repo]=BITS-Theme
+        env:
+          GH_TOKEN: ${{ secrets.FEED_PAT }}
