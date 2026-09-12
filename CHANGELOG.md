@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.0.3...v1.0.4) (2026-09-12)
+
+
+### Bug Fixes
+
+* enable apk package build ([7561116](https://github.com/Banten-IT-Solutions/BITS-Theme/commit/756111617b302d8b15dc3d6c34e95b29235efe47))
+
 ## [1.0.3](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.0.2...v1.0.3) (2026-09-10)
 
 

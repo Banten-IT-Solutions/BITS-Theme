@@ -1,6 +1,6 @@
 {
   "name": "luci-theme-bits",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "description": "BITS theme for LuCI (OpenWrt)",
   "repository": {
