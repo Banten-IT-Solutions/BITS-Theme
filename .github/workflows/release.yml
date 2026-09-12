@@ -77,7 +77,7 @@ jobs:
 
       - name: 📤 Attach APK
         run: |
-          find bin -name '*.apk' -exec gh release upload "${{ needs.release.outputs.tag }}" {} --clobber \;
+          find bin/packages -path '*/bits/*.apk' -exec gh release upload "${{ needs.release.outputs.tag }}" {} --clobber \;
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
