@@ -62,7 +62,7 @@ jobs:
           GH_TOKEN: ${{ secrets.FEED_PAT }}
 
   apk:
-    name: 📦 Build apk
+    name: 🏗️ Build APK
     needs: release
     if: needs.release.outputs.released == 'true'
     runs-on: ubuntu-latest
@@ -76,7 +76,7 @@ jobs:
         with:
           ref: ${{ needs.release.outputs.tag }}
 
-      - name: 🏗️ Build apk
+      - name: 🏗️ Build APK
         uses: openwrt/gh-action-sdk@main
         env:
           ARCH: aarch64_generic-${{ matrix.branch }}
@@ -84,7 +84,7 @@ jobs:
           PACKAGES: luci-theme-bits
           NO_REFRESH_CHECK: true
 
-      - name: 📤 Attach apk
+      - name: 📤 Attach APK
         run: |
           find bin -name '*.apk' -exec gh release upload "${{ needs.release.outputs.tag }}" {} --clobber \;
         env:
