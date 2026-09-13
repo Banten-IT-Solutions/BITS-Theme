@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.0.5...v1.1.0) (2026-09-13)
+
+
+### Features
+
+* build .ipk + .apk tanpa SDK via apk-tools v3 ([0988a0c](https://github.com/Banten-IT-Solutions/BITS-Theme/commit/0988a0c704ad47cd6a183c2d26424d19b3bc8b03))
+
 ## [1.0.5](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.0.4...v1.0.5) (2026-09-12)
 
 
