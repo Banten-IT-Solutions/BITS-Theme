@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.1.0...v1.1.1) (2026-09-13)
+
+
+### Bug Fixes
+
+* standard apk filename (name-version-r0.apk) for apk feed ([d1225d0](https://github.com/Banten-IT-Solutions/BITS-Theme/commit/d1225d0dc540ed2847fb03fb7131794d335a9a0c))
+
 # [1.1.0](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.0.5...v1.1.0) (2026-09-13)
 
 
