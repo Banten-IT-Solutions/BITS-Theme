@@ -10,8 +10,19 @@ if (!version) {
   process.exit(1);
 }
 
-// 1) bump package.json + package-lock.json (npm version sinkron keduanya)
-execSync(`npm version --no-git-tag-version ${version}`, { stdio: 'inherit' });
+// 1) bump package.json + package-lock.json (manual, toleran same-version)
+const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+pkg.version = version;
+fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+
+if (fs.existsSync('package-lock.json')) {
+  const lock = JSON.parse(fs.readFileSync('package-lock.json', 'utf8'));
+  lock.version = version;
+  if (lock.packages && lock.packages['']) {
+    lock.packages[''].version = version;
+  }
+  fs.writeFileSync('package-lock.json', JSON.stringify(lock, null, 2) + '\n');
+}
 
 // 2) bump control (ipk + apk membaca Version dari control)
 const name = 'luci-theme-bits';
