@@ -33,14 +33,18 @@
 
 ## 📦 Package
 
-`luci-theme-bits` — pure LuCI theme (`luci.mk`), `Depends: luci-base, rpcd`.
+`luci-theme-bits` — pure LuCI theme, `Depends: luci-base, rpcd`.
 
 > **Tidak termasuk patch Tailscale** — `luci-app-tailscale >= 1.0.4` sudah drop-in (helper + menu + ACL self-contained). **Tidak termasuk patch bot** — `luci-app-bitsnetworksbot` self-contained via postinst-nya.
 
 ## 🚀 Install
 
 ```sh
+# OpenWrt 22.03–24.10 (opkg)
 opkg install luci-theme-bits_<version>_all.ipk
+
+# OpenWrt 25.12+ (apk)
+apk add luci-theme-bits_<version>_all.apk
 ```
 
 Theme otomatis terdaftar + jadi default (bisa diganti di `System → System → Design`). Ke theme lain:
@@ -54,31 +58,46 @@ uci commit luci
 
 ```text
 BITS-Theme/
-└── luci-theme-bits/
-    ├── Makefile                 # luci.mk (feeds/luci/themes)
-    ├── control                  # ipk metadata
-    ├── postinst                 # banner + rc.local hook + apply patches
-    └── root/
-        ├── www/luci-static/bits/        # css/js/fonts/icons/logo
-        ├── usr/share/ucode/luci/template/themes/bits/  # header/footer/sysauth
-        ├── usr/lib/lua/luci/view/       # about.htm + shutdown.htm
-        ├── usr/share/bits-theme/banner  # SSH banner
-        ├── etc/profile.d/30-sysinfo.sh  # login sysinfo
-        ├── etc/custom_service/start_service.sh
-        ├── etc/uci-defaults/40_bits_theme
-        └── etc/bits/                    # patch engine + data (momo/bandix/dockerman/diskman/luci)
+├── .github/
+│   ├── dependabot.yml           # dep update (npm + actions)
+│   └── workflows/
+│       └── release.yml          # semantic-release + build .ipk/.apk + attach asset
+├── luci-theme-bits/
+│   ├── control                  # ipk/apk metadata
+│   ├── postinst                 # banner + rc.local hook + apply patches
+│   └── root/
+│       ├── www/luci-static/bits/        # css/js/fonts/icons/logo
+│       ├── usr/share/ucode/luci/template/themes/bits/  # header/footer/sysauth
+│       ├── usr/lib/lua/luci/view/       # about.htm + shutdown.htm
+│       ├── usr/share/bits-theme/banner  # SSH banner
+│       ├── etc/profile.d/30-sysinfo.sh  # login sysinfo
+│       ├── etc/custom_service/start_service.sh
+│       ├── etc/uci-defaults/40_bits_theme
+│       └── etc/bits/                    # patch engine + data (momo/bandix/dockerman/diskman/luci)
+├── scripts/
+│   └── prepare.js               # sync version + build .ipk/.apk
+├── build.sh                     # SDK-less .ipk + .apk packer
+├── package.json                 # semantic-release + plugins
+├── package-lock.json            # npm lockfile (npm ci)
+├── .releaserc.json              # release plugins (git + github)
+└── LICENSE
 ```
 
 ## 🏗️ Build
 
+SDK-less `.ipk` + `.apk`. Butuh `apk-tools v3` (`apk mkpkg`) di `PATH`. Di CI sudah di-cache; lokal install `apk-tools` 3.x atau set `APK_BIN=<path/to/apk>`.
+
 ```sh
 ./build.sh
 # output: dist/luci-theme-bits_<version>_all.ipk
+#         dist/luci-theme-bits_<version>_all.apk
 ```
+
+> `.ipk` = outer `tar.gz` (debian-binary + control.tar.gz + data.tar.gz). `.apk` = ADB container via `apk mkpkg`.
 
 ## 🚀 Release
 
-Conventional commit (`fix:` patch, `feat:` minor) → push `main` → semantic-release build `.ipk` + GitHub Release.
+Conventional commit (`fix:` patch, `feat:` minor) → push `main` → semantic-release build `.ipk` + `.apk` → GitHub Release.
 
 ---
 

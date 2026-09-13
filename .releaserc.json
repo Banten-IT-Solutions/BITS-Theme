@@ -8,16 +8,11 @@
       "prepareCmd": "node scripts/prepare.js ${nextRelease.version}"
     }],
     ["@semantic-release/git", {
-      "assets": [
-        "package.json",
-        "luci-theme-bits/control",
-        "luci-theme-bits/Makefile",
-        "CHANGELOG.md"
-      ],
+      "assets": ["package.json", "package-lock.json", "luci-theme-bits/control", "CHANGELOG.md"],
       "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
     }],
     ["@semantic-release/github", {
-      "assets": [{"path": "dist/*.ipk"}]
+      "assets": [{"path": "dist/*.ipk"}, {"path": "dist/*.apk"}]
     }]
   ]
 }

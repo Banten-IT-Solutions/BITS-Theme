@@ -5,6 +5,10 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: write
   issues: write
@@ -14,19 +18,43 @@ jobs:
   release:
     name: 🚀 Release
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     outputs:
       released: ${{ steps.semantic.outputs.released }}
       tag: ${{ steps.semantic.outputs.tag }}
     steps:
       - name: 🧾 Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
 
       - name: ⚙️ Setup Node
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
-          node-version: 20
+          node-version: 24
+          cache: npm
+
+      - name: ♻️ Cache apk-tools
+        id: apktools-cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
+        with:
+          path: apk-bin
+          key: apk-tools-3.0.5-b5a31c0
+
+      - name: 🔨 Build apk-tools
+        if: steps.apktools-cache.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq meson ninja-build libzstd-dev libssl-dev liblua5.3-dev
+          git clone --depth 1 --branch v3.0.5 https://github.com/alpinelinux/apk-tools.git /tmp/apk-tools
+          meson setup /tmp/apk-tools/build /tmp/apk-tools -Ddocs=disabled
+          ninja -C /tmp/apk-tools/build
+          mkdir -p apk-bin
+          cp /tmp/apk-tools/build/src/apk apk-bin/apk
+          cp /tmp/apk-tools/build/src/libapk.so.3.0.0 apk-bin/
+
+      - name: 🔗 Add apk to PATH
+        run: echo "$PWD/apk-bin" >> "$GITHUB_PATH"
 
       - name: 🔧 Configure Git
         run: |
@@ -34,7 +62,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: 📦 Install
-        run: npm install
+        run: npm ci
 
       - name: 🚀 Semantic Release
         id: semantic
@@ -52,45 +80,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  apk:
-    name: 🏗️ Build APK
+  feed:
+    name: 🔔 Trigger Feed
     needs: release
     if: needs.release.outputs.released == 'true'
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        branch: [ openwrt-24.10, openwrt-25.12 ]
-    steps:
-      - name: 🧾 Checkout
-        uses: actions/checkout@v7
-        with:
-          ref: ${{ needs.release.outputs.tag }}
-
-      - name: 🏗️ Build APK
-        uses: openwrt/gh-action-sdk@main
-        env:
-          ARCH: aarch64_generic-${{ matrix.branch }}
-          FEEDNAME: bits
-          PACKAGES: luci-theme-bits
-          NO_REFRESH_CHECK: true
-
-      - name: 📤 Attach APK
-        run: |
-          find bin/packages -path '*/bits/*.apk' -exec gh release upload "${{ needs.release.outputs.tag }}" {} --clobber \;
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  feed:
-    name: 🔔 Trigger Feed
-    needs: apk
-    if: needs.release.outputs.released == 'true'
-    runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: 🔔 Trigger Feed
         run: |
           gh api repos/Banten-IT-Solutions/BITS-WRT-Packages/dispatches \
             -f event_type=release-update \
-            -f client_payload[repo]=BITS-Theme
+            -f client_payload[repo]=BITS-Theme \
+            -f client_payload[version]="${{ needs.release.outputs.tag }}"
         env:
           GH_TOKEN: ${{ secrets.FEED_PAT }}
