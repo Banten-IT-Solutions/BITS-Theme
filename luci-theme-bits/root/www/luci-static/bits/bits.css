@@ -2120,30 +2120,31 @@ html[data-theme="dark"] #syslog {
   border-bottom: 3px double var(--ink);
   margin-bottom: 1rem;
 }
-.bits-field {
+/* scoped ke .bits-filters: class .bits-field juga dipakai form login (lihat blok .bits-login-*) */
+.bits-filters .bits-field {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
   gap: 0.45rem;
 }
 /* field filter terakhir (teks): baris penuh, input mengisi sisa */
-.bits-field:last-child { flex: 1 1 100%; }
-.bits-field:last-child input[type="text"] { flex: 1 1 auto; width: auto; min-width: 8rem; }
-.bits-field > label:not(.bits-invert) {
+.bits-filters .bits-field:last-child { flex: 1 1 100%; }
+.bits-filters .bits-field:last-child input[type="text"] { flex: 1 1 auto; width: auto; min-width: 8rem; }
+.bits-filters .bits-field > label:not(.bits-invert) {
   font-family: var(--mono);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   color: var(--muted);
 }
-.bits-field select, .bits-field input[type="text"], .bits-field input[type="number"] {
+.bits-filters .bits-field select, .bits-filters .bits-field input[type="text"], .bits-filters .bits-field input[type="number"] {
   font-family: var(--mono);
   font-size: 0.68rem;
   height: 1.85rem;
   box-sizing: border-box;
   padding: 0 0.6rem;
 }
-.bits-field input[type="text"], .bits-field input[type="number"] { width: 13rem; max-width: 100%; }
+.bits-filters .bits-field input[type="text"], .bits-filters .bits-field input[type="number"] { width: 13rem; max-width: 100%; }
 /* toggle bukan/NOT: pill klik */
 .bits-invert {
   display: inline-flex;
@@ -2431,3 +2432,40 @@ html[data-theme="dark"] .ts-status.ts-stop .ts-status-dot { background:#f87171; 
 
 /* ===== tailscale setting: status inline sejajar toggle Enable ===== */
 .ts-enable-inline { display: inline-flex !important; align-items: center; vertical-align: middle; gap: 10px; }
+
+/* ===== diagnostics: input & tombol sejajar, tinggi seragam ===== */
+/* markup bawaan: table.table > tr.tr > td.td.left > input + span.diag-action > button/.cbi-dropdown */
+[data-page="admin-network-diagnostics"] .table > .tr {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+[data-page="admin-network-diagnostics"] .table > .tr > .td {
+  flex: 1 1 16rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+}
+[data-page="admin-network-diagnostics"] .td.left > input[type="text"],
+[data-page="admin-network-diagnostics"] .td.left > select {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 2.1rem;
+  box-sizing: border-box;
+  margin: 0 !important; /* override inline margin:5px 0 bawaan view */
+}
+[data-page="admin-network-diagnostics"] .diag-action {
+  display: inline-flex;
+  align-items: stretch;
+  flex: 0 0 auto;
+}
+[data-page="admin-network-diagnostics"] .diag-action > .cbi-button,
+[data-page="admin-network-diagnostics"] .diag-action > .cbi-dropdown {
+  height: 2.1rem;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
