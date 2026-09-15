@@ -1,5 +1,5 @@
 Package: luci-theme-bits
-Version: 1.1.1
+Version: 1.1.2
 Depends: luci-base, rpcd, libc
 Section: luci
 Architecture: all

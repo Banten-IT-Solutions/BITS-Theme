@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.1.1...v1.1.2) (2026-09-15)
+
+
+### Bug Fixes
+
+* **css:** samakan tinggi field login & rapikan baris input+tombol diagnostics ([4f35d4b](https://github.com/Banten-IT-Solutions/BITS-Theme/commit/4f35d4bd5526f9118cb49cbd2fd7da46392eb187))
+
 ## [1.1.1](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.1.0...v1.1.1) (2026-09-13)
 
 
