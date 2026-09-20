@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.1.2...v1.2.0) (2026-09-20)
+
+
+### Features
+
+* **icons:** ganti emoji menu/status dengan ikon SVG modern + poles state aktif ([744f99b](https://github.com/Banten-IT-Solutions/BITS-Theme/commit/744f99b8a389451f9f453a51aab4604b8174386c))
+
 ## [1.1.2](https://github.com/Banten-IT-Solutions/BITS-Theme/compare/v1.1.1...v1.1.2) (2026-09-15)
 
 
